@@ -3,6 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(custom-safe-themes
@@ -21,7 +23,8 @@
  '(objed-cursor-color "#ff6c6b")
  '(org-agenda-files
    '("~/org/roam/20211004180500-facetimer_task_list.org" "/Users/patrick/org/roam/20210930114825-todo.org"))
- '(package-selected-packages '(git-link wakatime-mode protobuf-mode))
+ '(package-selected-packages
+   '(exec-path-from-shell dash-at-point git-link wakatime-mode protobuf-mode))
  '(pdf-view-midnight-colors (cons "#bbc2cf" "#282c34"))
  '(rustic-ansi-faces
    ["#282c34" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])

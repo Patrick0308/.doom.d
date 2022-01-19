@@ -34,7 +34,7 @@
 ;; (setq doom-theme 'doom-flatwhite)
 (if (not (display-graphic-p))
       (setq doom-theme 'doom-one)
-  (setq doom-theme 'tango-dark))
+  (setq doom-theme 'doom-tomorrow-night))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -129,10 +129,13 @@
 
 (setq magit-branch-read-upstream-first :fallback)
 
-;; (defun bb/evil-delete (orig-fn beg end &optional type _ &rest args)
-;;   (apply orig-fn beg end type ?_ args))
-;; (advice-add 'evil-delete :around 'bb/evil-delete)
+;; delete not yank
+(defun bb/evil-delete (orig-fn beg end &optional type _ &rest args) (apply orig-fn beg end type ?_ args))
+(advice-add 'evil-delete :around 'bb/evil-delete)
 
-(setq wakatime-api-key "7100a832-e93f-41c0-a099-782fa2fc41ec")
-(setq wakatime-cli-path "/Users/patrick/go/bin/wakatime-cli")
+;; wakatime
+(exec-path-from-shell-copy-env "WAKATIME_API_KEY")
+(exec-path-from-shell-copy-env "WAKATIME_CLI_PATH")
+(setq wakatime-api-key (getenv "WAKATIME_API_KEY"))
+(setq wakatime-cli-path (getenv "WAKATIME_CLI_PATH"))
 (global-wakatime-mode)
