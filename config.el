@@ -63,27 +63,27 @@
 
 (scroll-bar-mode -1)
 
-(if (display-graphic-p)
-    (progn
-      (setq initial-frame-alist
-            '(
-              (tool-bar-lines . 0)
-              (width . 170) ; chars
-              (height . 50) ; lines
-              (left . 35)
-              (top . 35)))
-      (setq default-frame-alist
-            '(
-              (tool-bar-lines . 0)
-              (width . 170)
-              (height . 50)
-              (left . 35)
-              (top . 35))))
-  (progn
-    (setq initial-frame-alist '( (tool-bar-lines . 0)))
-    (setq default-frame-alist '( (tool-bar-lines . 0)))))
+;; (if (display-graphic-p)
+;;     (progn
+;;       (setq initial-frame-alist
+;;             '(
+;;               (tool-bar-lines . 0)
+;;               (width . 170) ; chars
+;;               (height . 50) ; lines
+;;               (left . 35)
+;;               (top . 35)))
+;;       (setq default-frame-alist
+;;             '(
+;;               (tool-bar-lines . 0)
+;;               (width . 170)
+;;               (height . 50)
+;;               (left . 35)
+;;               (top . 35))))
+;;   (progn
+;;     (setq initial-frame-alist '( (tool-bar-lines . 0)))
+;;     (setq default-frame-alist '( (tool-bar-lines . 0)))))
 
-;; (if (display-graphic-p) (toggle-frame-maximized))
+(if (display-graphic-p) (toggle-frame-maximized))
 
 (after! lsp-mode
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor"))
@@ -108,21 +108,21 @@
   (setq +lsp-company-backends
         '(:separate company-capf company-yasnippet)))
 
+;; _ - as a part of word
 (defadvice evil-inner-word (around underscore-as-word activate)
   (let ((table (copy-syntax-table (syntax-table))))
     (modify-syntax-entry ?_ "w" table)
+    (modify-syntax-entry ?- "w" table)
     (with-syntax-table table
       ad-do-it)))
 
-;; (setq neo-window-width 35)
-
 (global-visual-line-mode t)
 
+;; (setq neo-window-width 35)
 ;; (add-hook 'neotree-mode-hook
 ;;        (lambda ()
 ;;          (visual-line-mode -1)
 ;;          (setq truncate-lines t)))
-
 ;; (add-hook 'projectile-after-switch-project-hook #'neotree)
 
 ;; (setq projectile-project-search-path '("~/LBProject" "~/Projects"))
