@@ -34,7 +34,7 @@
 ;; (setq doom-theme 'doom-flatwhite)
 (if (not (display-graphic-p))
       (setq doom-theme 'doom-one)
-  (setq doom-theme 'doom-tomorrow-night))
+  (setq doom-theme 'doom-flatwhite))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -42,7 +42,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 't)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -83,7 +83,8 @@
 ;;     (setq initial-frame-alist '( (tool-bar-lines . 0)))
 ;;     (setq default-frame-alist '( (tool-bar-lines . 0)))))
 
-(if (display-graphic-p) (toggle-frame-maximized))
+;; (if (display-graphic-p) (toggle-frame-maximized))
+(toggle-frame-maximized)
 
 (after! lsp-mode
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\vendor"))
@@ -109,12 +110,12 @@
         '(:separate company-capf company-yasnippet)))
 
 ;; _ - as a part of word
-(defadvice evil-inner-word (around underscore-as-word activate)
-  (let ((table (copy-syntax-table (syntax-table))))
-    (modify-syntax-entry ?_ "w" table)
-    (modify-syntax-entry ?- "w" table)
-    (with-syntax-table table
-      ad-do-it)))
+(defadvice evil-inner-word (around symbol-as-word activate)
+   (let ((table (copy-syntax-table (syntax-table))))
+     (modify-syntax-entry ?_ "w" table)
+     (modify-syntax-entry ?- "w" table)
+     (with-syntax-table table
+       ad-do-it)))
 
 (global-visual-line-mode t)
 
@@ -136,6 +137,9 @@
 ;; wakatime
 (exec-path-from-shell-copy-env "WAKATIME_API_KEY")
 (exec-path-from-shell-copy-env "WAKATIME_CLI_PATH")
+(exec-path-from-shell-copy-env "LBHOME")
+(exec-path-from-shell-copy-env "GHHOME")
+
 (setq wakatime-api-key (getenv "WAKATIME_API_KEY"))
 (setq wakatime-cli-path (getenv "WAKATIME_CLI_PATH"))
 (global-wakatime-mode)
