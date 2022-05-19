@@ -33,7 +33,7 @@
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-flatwhite)
 (if (not (display-graphic-p))
-      (setq doom-theme 'doom-one)
+      (setq doom-theme 'doom-Iosvkem)
   (setq doom-theme 'doom-flatwhite))
 
 ;; If you use `org' and don't want your org files in the default location below,
@@ -126,19 +126,22 @@
 ;;          (setq truncate-lines t)))
 ;; (add-hook 'projectile-after-switch-project-hook #'neotree)
 
-;; (setq projectile-project-search-path '("~/LBProject" "~/Projects"))
+(setq projectile-project-search-path '("~/projects"))
 
 (setq magit-branch-read-upstream-first :fallback)
 
 ;; delete not yank
-(defun bb/evil-delete (orig-fn beg end &optional type _ &rest args) (apply orig-fn beg end type ?_ args))
-(advice-add 'evil-delete :around 'bb/evil-delete)
+;; (defun bb/evil-delete (orig-fn beg end &optional type _ &rest args) (apply orig-fn beg end type ?_ args))
+;; (advice-add 'evil-delete :around 'bb/evil-delete)
+
+(exec-path-from-shell-initialize)
 
 ;; wakatime
 (exec-path-from-shell-copy-env "WAKATIME_API_KEY")
 (exec-path-from-shell-copy-env "WAKATIME_CLI_PATH")
 (exec-path-from-shell-copy-env "LBHOME")
 (exec-path-from-shell-copy-env "GHHOME")
+
 
 (setq wakatime-api-key (getenv "WAKATIME_API_KEY"))
 (setq wakatime-cli-path (getenv "WAKATIME_CLI_PATH"))
