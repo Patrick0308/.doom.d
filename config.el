@@ -34,7 +34,7 @@
 ;; (setq doom-theme 'doom-flatwhite)
 (if (not (display-graphic-p))
       (setq doom-theme 'doom-Iosvkem)
-  (setq doom-theme 'doom-flatwhite))
+  (setq doom-theme 'doom-Iosvkem))
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
